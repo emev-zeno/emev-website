@@ -46,7 +46,7 @@ const ProjectGrid: React.FC = () => {
                   <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 mb-2">Impact</div>
                   <p className="text-gray-600 font-medium italic">"{iosProjects[0].outcome}"</p>
                 </div>
-                <ExploreButton href="https://softday.emev.com.au" />
+                <ExploreButton href="https://apps.apple.com/au/app/softday/id6758242532" />
               </div>
             </div>
             <div className="flex-1 w-full flex flex-col items-center">
@@ -137,7 +137,7 @@ const ProjectGrid: React.FC = () => {
                   <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 mb-2">Impact</div>
                   <p className="text-gray-600 font-medium italic">"{iosProjects[1].outcome}"</p>
                 </div>
-                <ExploreButton href="https://zenosnap.emev.com.au" />
+                <ExploreButton href="https://apps.apple.com/au/app/zeno-snap/id6756941278" />
               </div>
             </div>
             <div className="flex-1 w-full max-w-md flex flex-col items-center">
