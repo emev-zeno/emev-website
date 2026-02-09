@@ -303,15 +303,6 @@ const ProjectGrid: React.FC = () => {
           </div>
         </div>
 
-        {/* Long-term Strategic Research - Centered */}
-        <div className="max-w-2xl mx-auto text-center border-t border-gray-100 pt-48">
-          <h3 className="text-3xl font-semibold text-gray-900 mb-6">{researchProjects[0]?.title}</h3>
-          <div className="inline-block px-8 py-4 bg-gray-50 rounded-full border border-gray-100">
-            <p className="text-sm font-medium text-gray-700">
-              Objective: {researchProjects[0]?.outcome}
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );

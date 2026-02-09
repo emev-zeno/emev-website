@@ -30,13 +30,6 @@ export const PROJECTS: Project[] = [
     category: ProjectCategory.WEB,
     outcome: 'Achieved 50% reduction in response time and 70% lower operational load.'
   },
-  {
-    id: '5',
-    title: 'Long-term Strategic Research',
-    description: 'Future-proof, secure, and private infrastructure models.',
-    category: ProjectCategory.RESEARCH,
-    outcome: 'Defining the roadmap for future-proof, secure, and private AI infrastructure.'
-  }
 ];
 
 export const STEPS: Step[] = [
