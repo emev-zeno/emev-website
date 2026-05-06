@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProjectGrid from './components/ProjectGrid';
 import Approach from './components/Approach';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -19,7 +18,6 @@ const App: React.FC = () => {
       <Navbar />
       <main>
         <Hero onContactClick={openContact} />
-        <ProjectGrid />
         <Approach />
         <About />
       </main>

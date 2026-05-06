@@ -9,7 +9,7 @@ const About: React.FC = () => {
           <div className="relative z-10 max-w-2xl">
             <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-gray-600 mb-10">About EMEV</h2>
             <p className="text-2xl md:text-3xl font-medium leading-[1.6] tracking-tight text-gray-100">
-              EMEV brings together deep operational perspective and advanced AI expertise to modernize how work gets done. We eliminate friction by transforming inefficiencies into streamlined, intelligent assets.
+              EMEV brings together deep operational perspective and advanced AI expertise to modernize how work gets done.
             </p>
           </div>
           {/* Subtle decorative element */}
