@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-type Route = 'home' | 'tacoandchai' | 'zeyo';
+type Route = 'home' | 'tacoandchai';
 
 const pages: Record<Route, { title: string; description: string }> = {
   home: {
@@ -13,16 +13,11 @@ const pages: Record<Route, { title: string; description: string }> = {
     description:
       'AI-enhanced food and lifestyle content with a real point of view.',
   },
-  zeyo: {
-    title: 'Zeyo - AI character by EMEV',
-    description: 'A warm AI character experience for mood checks and tiny everyday reactions.',
-  },
 };
 
 const getRoute = (): Route => {
   const pathname = window.location.pathname.replace(/\/+$/, '');
   if (pathname === '/tacoandchai') return 'tacoandchai';
-  if (pathname === '/zeyo' || pathname === '/basil') return 'zeyo';
   return 'home';
 };
 
@@ -44,7 +39,6 @@ const App: React.FC = () => {
 
   const page = useMemo(() => {
     if (route === 'tacoandchai') return <TacoAndChaiPage />;
-    if (route === 'zeyo') return <ZeyoPage />;
     return <HomePage />;
   }, [route]);
 
@@ -71,11 +65,6 @@ const HomePage: React.FC = () => (
           <div className="project-label"><span className="dot" />Active</div>
           <div className="project-name">taco & chai</div>
           <div className="project-desc">Food & lifestyle content brand</div>
-        </a>
-        <a href="/zeyo" className="project-card">
-          <div className="project-label"><span className="dot soon" />Coming soon</div>
-          <div className="project-name">Zeyo</div>
-          <div className="project-desc">AI character for tiny mood checks</div>
         </a>
         <a href="mailto:hello@emev.com.au" className="project-card">
           <div className="project-label">Work with us</div>
@@ -185,44 +174,6 @@ const TacoAndChaiPage: React.FC = () => (
     </section>
 
     <BrandFooter label="taco & chai - a project by" location="Sydney, Australia" />
-  </div>
-);
-
-const ZeyoPage: React.FC = () => (
-  <div className="brand-page zeyo-page">
-    <nav className="brand-nav">
-      <a href="/" className="nav-back">EMEV</a>
-      <span className="brand-logo">Zeyo</span>
-      <a href="https://zeyo.emev.com.au" className="nav-link">zeyo.emev.com.au</a>
-    </nav>
-
-    <main className="zeyo-main">
-      <span className="badge">AI character</span>
-      <h1>meet the tiny AI friend<br />that reads the <em>room.</em></h1>
-      <p className="zeyo-sub">
-        Zeyo is the character behind the mood-check experience: quick camera reactions,
-        warm voice lines, and gentle AI feedback that feels more like a companion than a tool.
-      </p>
-
-      <div className="demo">
-        <div className="demo-img zeyo-face" aria-hidden="true">
-          <span />
-        </div>
-        <div className="demo-label">Zeyo says</div>
-        <div className="demo-captions">
-          <button className="demo-caption selected">"tiny tired sparkle detected. still iconic."</button>
-          <button className="demo-caption">"this is giving cozy main character energy."</button>
-          <button className="demo-caption">"gentle chaos today. honestly, respect."</button>
-        </div>
-      </div>
-
-      <div className="cta-row centered">
-        <a href="https://zeyo.emev.com.au" className="btn btn-fill">Open Zeyo</a>
-        <a href="mailto:hello@emev.com.au" className="btn btn-outline">Partner with EMEV</a>
-      </div>
-    </main>
-
-    <BrandFooter label="Zeyo - an AI character by" location="Built in Sydney" />
   </div>
 );
 

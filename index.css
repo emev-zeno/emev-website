@@ -115,8 +115,7 @@ p {
 }
 
 .home-main h1,
-.brand-hero h1,
-.zeyo-main h1 {
+.brand-hero h1 {
   font-family: "Syne", sans-serif;
   font-weight: 800;
   line-height: 0.95;
@@ -249,14 +248,6 @@ h2 em {
   --border: rgba(26, 20, 16, 0.1);
 }
 
-.zeyo-page {
-  --bg: #f7fbfc;
-  --dark: #10191c;
-  --warm: #247c86;
-  --muted: #6d8389;
-  --border: rgba(16, 25, 28, 0.1);
-}
-
 .brand-nav {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -303,8 +294,7 @@ h2 em {
   margin-bottom: 1.25rem;
 }
 
-.brand-hero h1,
-.zeyo-main h1 {
+.brand-hero h1 {
   font-size: clamp(2.8rem, 7vw, 5.5rem);
   margin-bottom: 1.75rem;
 }
@@ -312,16 +302,13 @@ h2 em {
 .brand-hero h1 em,
 .section h2 em,
 .services h2 em,
-.brand-cta h2 em,
-.zeyo-main h1 em {
+.brand-cta h2 em {
   color: var(--warm);
 }
 
 .brand-sub,
 .body-text p,
-.brand-cta p,
-.zeyo-sub,
-.notify-note {
+.brand-cta p {
   color: var(--muted);
   line-height: 1.8;
 }
@@ -567,113 +554,6 @@ h2 em {
   color: var(--dark);
 }
 
-.zeyo-main {
-  min-height: calc(100vh - 144px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 4rem 3rem;
-}
-
-.badge {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  background: #e2f3f6;
-  color: var(--warm);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.zeyo-sub {
-  max-width: 460px;
-  margin-bottom: 3rem;
-}
-
-.demo {
-  width: min(100%, 380px);
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
-  text-align: left;
-}
-
-.demo-img {
-  height: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  background: #e2f3f6;
-}
-
-.zeyo-face {
-  position: relative;
-}
-
-.zeyo-face::before,
-.zeyo-face::after {
-  content: "";
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  background: var(--dark);
-  position: absolute;
-  top: 56px;
-}
-
-.zeyo-face::before {
-  left: calc(50% - 48px);
-}
-
-.zeyo-face::after {
-  right: calc(50% - 48px);
-}
-
-.zeyo-face span {
-  width: 68px;
-  height: 36px;
-  margin-top: 36px;
-  border-bottom: 5px solid var(--dark);
-  border-radius: 0 0 999px 999px;
-}
-
-.demo-label {
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-}
-
-.demo-captions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.demo-caption {
-  border: 0;
-  border-radius: 8px;
-  background: #eaf5f6;
-  color: var(--dark);
-  padding: 0.7rem 0.85rem;
-  text-align: left;
-  line-height: 1.45;
-  cursor: pointer;
-}
-
-.demo-caption.selected,
-.demo-caption:hover {
-  background: var(--warm);
-  color: #fff;
-}
-
 @keyframes up {
   from {
     opacity: 0;
@@ -713,8 +593,7 @@ h2 em {
   .section,
   .services,
   .brand-cta,
-  .brand-footer,
-  .zeyo-main {
+  .brand-footer {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }

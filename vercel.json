@@ -3,8 +3,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/tacoandchai", "destination": "/" },
-    { "source": "/zeyo", "destination": "/" },
-    { "source": "/basil", "destination": "/" }
+    { "source": "/tacoandchai", "destination": "/" }
   ]
 }
