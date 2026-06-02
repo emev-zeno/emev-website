@@ -45,41 +45,88 @@ const App: React.FC = () => {
   return page;
 };
 
-const HomePage: React.FC = () => (
-  <div className="emev-shell emev-home">
-    <nav className="home-nav">
-      <a href="/" className="home-logo">EMEV</a>
-      <a href="mailto:hello@emev.com.au" className="home-email">hello@emev.com.au</a>
-    </nav>
+const HomePage: React.FC = () => {
+  const [showContact, setShowContact] = useState(false);
+  const [contactName, setContactName] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
 
-    <main className="home-main">
-      <p className="eyebrow">AI content studio - Sydney, AU</p>
-      <h1>We make content move at the <em>speed of now</em></h1>
-      <p className="sub">
-        AI-native content production for food and lifestyle brands. No photoshoot.
-        No three-week wait. Just content that works.
-      </p>
+  const sendContact = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`EMEV enquiry from ${contactName || 'website'}`);
+    const body = encodeURIComponent([
+      contactName ? `Name: ${contactName}` : '',
+      '',
+      contactMessage,
+    ].filter(Boolean).join('\n'));
+    window.location.href = `mailto:hello@emev.com.au?subject=${subject}&body=${body}`;
+    setShowContact(false);
+  };
 
-      <div className="projects">
-        <a href="/tacoandchai" className="project-card">
-          <div className="project-label"><span className="dot" />Active</div>
-          <div className="project-name">taco & chai</div>
-          <div className="project-desc">Food & lifestyle content brand</div>
-        </a>
-        <a href="mailto:hello@emev.com.au" className="project-card">
-          <div className="project-label">Work with us</div>
-          <div className="project-name">Get in touch</div>
-          <div className="project-desc">hello@emev.com.au</div>
-        </a>
-      </div>
-    </main>
+  return (
+    <div className="emev-shell emev-home">
+      <nav className="home-nav">
+        <a href="/" className="home-logo">EMEV</a>
+      </nav>
 
-    <footer className="home-footer">
-      <span>© 2026 EMEV</span>
-      <span>Sydney, Australia</span>
-    </footer>
-  </div>
-);
+      <main className="home-main">
+        <p className="eyebrow">AI content studio - Sydney, AU</p>
+        <h1>We make content move at the <em>speed of now</em></h1>
+        <p className="sub">
+          AI-native content production for food and lifestyle brands. No photoshoot.
+          No three-week wait. Just content that works.
+        </p>
+
+        <div className="projects">
+          <a href="/tacoandchai" className="project-card">
+            <div className="project-label"><span className="dot" />Active</div>
+            <div className="project-name">taco & chai</div>
+            <div className="project-desc">Food & lifestyle content brand</div>
+          </a>
+          <button type="button" onClick={() => setShowContact(true)} className="project-card contact-card">
+            <div className="project-label">Work with us</div>
+            <div className="project-name">Get in touch</div>
+            <div className="project-desc">Send a short brief</div>
+          </button>
+        </div>
+      </main>
+
+      <footer className="home-footer">
+        <span>© 2026 EMEV</span>
+        <span>Sydney, Australia</span>
+      </footer>
+
+      {showContact && (
+        <div className="contact-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+          <form className="contact-modal" onSubmit={sendContact}>
+            <button type="button" className="contact-close" onClick={() => setShowContact(false)} aria-label="Close contact form">×</button>
+            <p className="project-label">Work with us</p>
+            <h2 id="contact-title">Tell us what you need</h2>
+            <label>
+              <span>Name</span>
+              <input
+                value={contactName}
+                onChange={(event) => setContactName(event.target.value)}
+                placeholder="Your name"
+                required
+              />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea
+                value={contactMessage}
+                onChange={(event) => setContactMessage(event.target.value)}
+                placeholder="What are you making?"
+                rows={5}
+                required
+              />
+            </label>
+            <button type="submit" className="contact-submit">Send message</button>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const TacoAndChaiPage: React.FC = () => (
   <div className="brand-page taco-page">
