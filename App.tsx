@@ -4,9 +4,9 @@ type Route = 'home' | 'tacoandchai';
 
 const pages: Record<Route, { title: string; description: string }> = {
   home: {
-    title: 'EMEV - AI content studio',
+    title: 'EMEV - Creative content studio',
     description:
-      'AI-native content production for food and lifestyle brands in Sydney.',
+      'Creative content for food, lifestyle, and tech brands. We show up, shoot it, and make it matter.',
   },
   tacoandchai: {
     title: 'taco & chai - by EMEV',
@@ -69,11 +69,10 @@ const HomePage: React.FC = () => {
       </nav>
 
       <main className="home-main">
-        <p className="eyebrow">AI content studio - Sydney, AU</p>
+        <p className="eyebrow">Creative content studio</p>
         <h1>We make content move at the <em>speed of now</em></h1>
         <p className="sub">
-          AI-native content production for food and lifestyle brands. No photoshoot.
-          No three-week wait. Just content that works.
+          Every brand has a story. We make it impossible to ignore.
         </p>
 
         <div className="projects">
