@@ -50,6 +50,14 @@ input {
   padding-right: 3rem;
 }
 
+.home-nav,
+.home-main,
+.home-footer {
+  width: min(100%, 1180px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .home-nav {
   padding-top: 2rem;
   padding-bottom: 2rem;
