@@ -81,10 +81,15 @@ const HomePage: React.FC = () => {
             <div className="project-name">taco & chai</div>
             <div className="project-desc">Food & lifestyle content brand</div>
           </a>
+          <a href="https://toto.emev.com.au" target="_blank" rel="noreferrer" className="project-card">
+            <div className="project-label"><span className="dot" />Live</div>
+            <div className="project-name">toto</div>
+            <div className="project-desc">Drop a photo. Get a caption.</div>
+          </a>
           <button type="button" onClick={() => setShowContact(true)} className="project-card contact-card">
             <div className="project-label">Work with us</div>
             <div className="project-name">Get in touch</div>
-            <div className="project-desc">Send a short brief</div>
+            <div className="project-desc">hello@emev.com.au</div>
           </button>
         </div>
       </main>
