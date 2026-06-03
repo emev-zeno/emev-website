@@ -225,17 +225,7 @@
     }
 
     .shot img {
-      aspect-ratio: 1;
-      object-fit: cover;
       transition: transform 0.45s ease;
-    }
-
-    .shot.portrait-3x4 img {
-      aspect-ratio: 3 / 4;
-    }
-
-    .shot.portrait-5x7 img {
-      aspect-ratio: 5 / 7;
     }
 
     .shot::after {
@@ -432,21 +422,25 @@
 
     .gallery-panel {
       position: relative;
-      width: min(100%, 880px);
+      width: fit-content;
+      max-width: calc(100vw - 2rem);
       display: grid;
       gap: 1rem;
     }
 
     .gallery-frame {
-      overflow: hidden;
-      background: var(--cream);
+      display: flex;
+      justify-content: center;
+      overflow: visible;
+      background: transparent;
     }
 
     .gallery-frame img {
-      width: 100%;
+      width: auto;
+      height: auto;
+      max-width: calc(100vw - 2rem);
       max-height: 78vh;
       object-fit: contain;
-      background: var(--cream);
     }
 
     .gallery-controls {
