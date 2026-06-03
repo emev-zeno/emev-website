@@ -13,6 +13,7 @@
       --cream: #faf6f0;
       --dark: #1a1410;
       --orange: #c8783a;
+      --grid-gap: 1rem;
       --muted: rgba(26, 20, 16, 0.58);
       --soft: rgba(26, 20, 16, 0.1);
       --white: #fffaf4;
@@ -208,7 +209,8 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: start;
-      gap: clamp(0.9rem, 2vw, 1.4rem);
+      gap: var(--grid-gap);
+      grid-auto-flow: dense;
     }
 
     .shot {
