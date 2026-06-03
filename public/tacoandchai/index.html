@@ -225,7 +225,17 @@
     }
 
     .shot img {
+      aspect-ratio: 1;
+      object-fit: cover;
       transition: transform 0.45s ease;
+    }
+
+    .shot.portrait-3x4 img {
+      aspect-ratio: 3 / 4;
+    }
+
+    .shot.portrait-5x7 img {
+      aspect-ratio: 5 / 7;
     }
 
     .shot::after {
@@ -614,8 +624,8 @@
 
     <section class="ticker" aria-label="taco and chai ticker">
       <div class="ticker-track">
-        <span>illustrated characters ✦ real places real food ✦ barter &amp; paid collabs open ✦ 10+ barter collabs in sydney ✦ brisbane travel content coming soon ✦</span>
-        <span>illustrated characters ✦ real places real food ✦ barter &amp; paid collabs open ✦ 10+ barter collabs in sydney ✦ brisbane travel content coming soon ✦</span>
+        <span>illustrated characters ✦ real places real food ✦ barter &amp; paid collabs open ✦ 10+ barter collabs in sydney ✦ brisbane + coffs harbour travel content coming soon ✦</span>
+        <span>illustrated characters ✦ real places real food ✦ barter &amp; paid collabs open ✦ 10+ barter collabs in sydney ✦ brisbane + coffs harbour travel content coming soon ✦</span>
       </div>
     </section>
 
@@ -626,25 +636,25 @@
           <small>tap to open</small>
           <span>Mr HotPoter Australia, Chatswood</span>
         </button>
-        <button class="shot" type="button" data-gallery="set2">
-          <img src="/images/2/1.jpg" alt="taco and chai character collection cover">
+        <button class="shot portrait-3x4" type="button" data-gallery="set2">
+          <img src="/images/2/2.PNG" alt="Chatkazz Bella Vista collection cover">
+          <small>tap to open</small>
+          <span>Chatkazz, Bella Vista</span>
+        </button>
+        <button class="shot portrait-5x7" type="button" data-gallery="set3">
+          <img src="/images/3/1.jpg" alt="Bhuja Snacks Tasting Collab collection cover">
           <small>tap to open</small>
           <span>Bhuja Snacks Tasting Collab</span>
         </button>
-        <button class="shot" type="button" data-gallery="set3">
-          <img src="/images/3/1.jpg" alt="taco and chai cinematic days collection cover">
-          <small>tap to open</small>
-          <span>Moccona</span>
-        </button>
         <button class="shot" type="button" data-gallery="set4">
-          <img src="/images/4/1.jpg" alt="taco and chai restaurant collab collection cover">
+          <img src="/images/4/1.jpg" alt="LeWrap Mental Health Awareness Event collection cover">
           <small>tap to open</small>
-          <span>Chatkazz Bella Vista</span>
+          <span>LeWrap, Mental Health Awareness Event</span>
         </button>
         <button class="shot" type="button" data-gallery="set5">
-          <img src="/images/5/1.PNG" alt="taco and chai story collection cover">
+          <img src="/images/5/1.PNG" alt="Moconna collection cover">
           <small>tap to open</small>
-          <span>LeWrap Mental Health Awareness Event</span>
+          <span>Moconna</span>
         </button>
         <button class="shot" type="button" data-gallery="set6">
           <img src="/images/6/1.jpg" alt="taco and chai lifestyle collection cover">
@@ -699,10 +709,6 @@
     </section>
 
     <section class="proof reveal" aria-label="brand story and comments">
-      <div class="proof-head">
-        <p class="section-label">Brand proof</p>
-        <h2>story, then response</h2>
-      </div>
       <div class="loop" aria-label="taco and chai story slides">
         <figure><img src="/images/story/1.PNG" alt="taco and chai story slide 1"></figure>
         <figure><img src="/images/story/2.PNG" alt="taco and chai story slide 2"></figure>
