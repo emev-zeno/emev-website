@@ -217,7 +217,7 @@
       overflow: hidden;
       break-inside: avoid;
       border: 0;
-      background: rgba(26, 20, 16, 0.04);
+      background: transparent;
       color: inherit;
       cursor: pointer;
       padding: 0;
@@ -225,6 +225,8 @@
     }
 
     .shot img {
+      width: 100%;
+      height: auto;
       transition: transform 0.45s ease;
     }
 
@@ -424,29 +426,36 @@
       position: relative;
       width: fit-content;
       max-width: calc(100vw - 2rem);
-      display: grid;
+      display: inline-grid;
+      justify-items: center;
       gap: 1rem;
     }
 
     .gallery-frame {
-      display: flex;
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      align-items: center;
       justify-content: center;
       overflow: visible;
       background: transparent;
     }
 
     .gallery-frame img {
+      display: block;
       width: auto;
       height: auto;
       max-width: calc(100vw - 2rem);
       max-height: 78vh;
       object-fit: contain;
+      background: transparent;
     }
 
     .gallery-controls {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: fit-content;
       gap: 0.7rem;
     }
 
