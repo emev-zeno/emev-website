@@ -206,18 +206,18 @@
     .masonry {
       width: min(1480px, 100%);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: start;
-      gap: var(--grid-gap);
-      grid-auto-flow: dense;
+      display: block;
+      columns: 3;
+      column-gap: 6px;
+      orphans: 1;
+      widows: 1;
     }
 
     .shot {
       position: relative;
       display: block;
       width: 100%;
-      margin: 0;
+      margin: 0 0 6px;
       overflow: hidden;
       border: 0;
       background: transparent;
@@ -225,6 +225,39 @@
       cursor: pointer;
       padding: 0;
       text-align: left;
+      break-inside: avoid;
+    }
+
+    .shot img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.45s ease;
+    }
+
+    .shot:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Tablet */
+    @media (max-width: 768px) {
+      .masonry {
+        columns: 2;
+        column-gap: 4px;
+      }
+      .shot {
+        margin-bottom: 4px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .masonry {
+        columns: 2;
+        column-gap: 3px;
+      }
+      .shot {
+        margin-bottom: 3px;
+      }
     }
 
     .shot img {
