@@ -18,6 +18,14 @@
     {
       "source": "/flick/",
       "destination": "/flick/index.html"
+    },
+    {
+      "source": "/fixitfirst",
+      "destination": "/fixitfirst/index.html"
+    },
+    {
+      "source": "/fixitfirst/",
+      "destination": "/fixitfirst/index.html"
     }
   ]
 }
