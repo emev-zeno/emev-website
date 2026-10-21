@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Flick · AI video ads by EMEV</title>
+<meta name="description" content="Flick is an independent AI creative studio in Melbourne making short AI video ads. Spin the reel room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,400..900&family=Figtree:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark screening room — studio line on top, then the 3D reel carousel is the whole page. Single deliberate dark look. */
+:root{
+  --night:#0f0c0d; --plum:#1d1719; --plum2:#33282a; --cream:#f6eee0; --muted:#bdb2a7; --teal:#1f9e94; --rose:#c43c5c;
+  --chai:#e2a55a; --chili:#ec5b40;
+  --display:"Anybody","Arial Narrow",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--night);color:var(--cream)}
+body{font:16px/1.55 var(--body);margin:0;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--chai);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 28px}
+.eyebrow{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--chai)}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;padding-block:22px 18px}
+.logo{font:900 22px var(--display);font-stretch:150%;letter-spacing:.02em}
+.logo span{color:var(--chili)}
+.label{display:flex;justify-content:space-between;align-items:baseline;padding-block:26px 14px}
+.how{padding-block:56px 8px;display:grid;gap:10px}
+.how h2{font:800 clamp(28px,4.6vw,48px)/1 var(--display);font-stretch:125%;margin:0;text-wrap:balance}
+.process{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:16px}
+.step{background:var(--plum);border-radius:14px;padding:16px 14px;display:grid;gap:6px;min-width:0}
+.step .n{font:500 11px var(--mono);color:var(--chai)}
+.step b{font:700 17px var(--display);font-stretch:115%}
+.step p{margin:0;color:var(--muted);font-size:14px}
+@media (max-width:760px){.process{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.count{font:500 11px var(--mono);color:var(--muted);letter-spacing:.1em}
+.stage{position:relative;height:min(80vh,740px);min-height:440px;border-radius:22px;overflow:hidden;background:#140f10;touch-action:pan-y;isolation:isolate}
+.stage::before,.stage::after{content:"";position:absolute;inset:-25%;z-index:0;filter:blur(60px);opacity:.85;pointer-events:none}
+.stage::before{background:
+  radial-gradient(28% 32% at 22% 30%,var(--chili) 0%,transparent 70%),
+  radial-gradient(30% 34% at 78% 26%,var(--teal) 0%,transparent 70%),
+  radial-gradient(34% 30% at 50% 82%,var(--chai) 0%,transparent 72%);
+  animation:drift 22s ease-in-out infinite alternate}
+.stage::after{background:
+  radial-gradient(24% 26% at 70% 70%,var(--rose) 0%,transparent 70%),
+  radial-gradient(22% 24% at 30% 72%,var(--teal) 0%,transparent 70%);
+  opacity:.55;animation:drift2 28s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(-4%,-2%) rotate(0deg) scale(1)}100%{transform:translate(5%,4%) rotate(14deg) scale(1.12)}}
+@keyframes drift2{0%{transform:translate(4%,3%) rotate(0deg)}100%{transform:translate(-6%,-4%) rotate(-18deg) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.stage::before,.stage::after{animation:none}}
+.stage canvas{position:relative;z-index:1;display:block;width:100%;height:100%;cursor:grab}
+.hint,.now,.nogl{z-index:2}
+.stage canvas.dragging{cursor:grabbing}
+.hint{position:absolute;left:18px;bottom:16px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  background:rgba(15,12,13,.55);padding:8px 12px;border-radius:999px;pointer-events:none}
+.now{position:absolute;right:18px;bottom:16px;text-align:right;pointer-events:none}
+.now b{display:block;font:800 26px var(--display);font-stretch:130%}
+.now span{font:500 11px var(--mono);color:var(--chai);letter-spacing:.1em;text-transform:uppercase}
+.nogl{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted)}
+.btn{font:600 14px var(--body);background:transparent;color:var(--cream);border:1px solid var(--plum2);border-radius:10px;padding:10px 16px;cursor:pointer}
+.player{position:fixed;inset:0;z-index:20;background:rgba(12,9,10,.92);display:grid;place-items:center;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.player .box{display:grid;gap:12px;justify-items:center;max-height:100%}
+.player video,.player canvas{max-height:78vh;max-width:min(92vw,460px);aspect-ratio:9/16;border-radius:16px;background:var(--plum)}
+.player .bar{display:flex;gap:12px;align-items:center}
+.player .bar b{font:800 20px var(--display);font-stretch:125%}
+/* nav + footer follow the EMEV microsite pattern (back to EMEV · brand · contact) */
+a{color:inherit;text-decoration:none}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding-block:20px 4px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.nav .logo{color:var(--cream);text-transform:none}
+.nav-right{justify-self:end}
+.nav a:hover,.footer a:hover{color:var(--chai)}
+.footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;margin-top:48px;padding-top:22px;border-top:1px solid var(--plum2);color:var(--muted);font-size:14px}
+.footer nav{display:flex;gap:20px}
+@media (max-width:560px){.nav{grid-template-columns:1fr auto}.nav-right{display:none}.footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a href="/">← EMEV</a>
+    <a class="logo" href="/flick">Flick<span>.</span></a>
+    <a class="nav-right" href="mailto:hello@emev.com.au">Work with us ↗</a>
+  </nav>
+  <div class="label"><span class="eyebrow">Independent AI creative studio · Melbourne</span></div>
+  <div class="stage" id="stage">
+    <div class="hint">Drag to spin · Tap a reel to play</div>
+    <div class="now" aria-live="polite"><span>Now facing</span><b id="nowName">Bhuja</b></div>
+  </div>
+
+  <section class="how">
+    <div class="eyebrow">How a reel gets made</div>
+    <h2>Idea to finished ad</h2>
+    <div class="process">
+      <div class="step"><span class="n">01</span><b>Idea</b><p>Find the one thing about the brand worth a scroll-stop.</p></div>
+      <div class="step"><span class="n">02</span><b>Story</b><p>Shape a short arc: hook, moment, payoff.</p></div>
+      <div class="step"><span class="n">03</span><b>Generate</b><p>Build the shots with Higgsfield AI video.</p></div>
+      <div class="step"><span class="n">04</span><b>Produce</b><p>Cut, pace and polish into one clean reel.</p></div>
+      <div class="step"><span class="n">05</span><b>Post</b><p>Copy, sequencing and formats ready for Instagram.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>Flick · a project by <a href="/">EMEV</a></span>
+    <nav>
+      <a href="mailto:hello@emev.com.au">Contact</a>
+      <a href="/">EMEV</a>
+    </nav>
+  </footer>
+</div>
+
+<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-label="Reel player">
+  <div class="box">
+    <div id="pslot"></div>
+    <div class="bar"><b id="ptitle"></b><button class="btn" id="pclose" type="button">Close</button></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const REELS = [
+  {slug:"bhuja", name:"Bhuja", c:["#ec5b40","#e2a55a"]},
+  {slug:"golisoda", name:"Goli Soda", c:["#9fcda5","#2f7f6b"]},
+  {slug:"climbfit", name:"Climbfit", c:["#e2a55a","#7a4fd1"]},
+  {slug:"taxibox", name:"Taxi Box", c:["#f2cf45","#ec5b40"]},
+  {slug:"ryde", name:"Ryde", c:["#6aa7ff","#9fcda5"]},
+  {slug:"lando", name:"Lando", c:["#ff8fb1","#e2a55a"]},
+  {slug:"chatkazz", name:"Chatkazz", c:["#b48cff","#ec5b40"]},
+];
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const src = r => "/flick/reels/" + r.slug + ".mp4";
+
+function poster(r, w=540, h=960){
+  const cv=document.createElement("canvas"); cv.width=w; cv.height=h; const g=cv.getContext("2d");
+  const gr=g.createLinearGradient(0,0,w,h); gr.addColorStop(0,r.c[0]); gr.addColorStop(1,r.c[1]); g.fillStyle=gr; g.fillRect(0,0,w,h);
+  g.globalAlpha=.18; g.fillStyle="#171229";
+  for(let i=0;i<9;i++){g.beginPath(); g.arc(w*((i*37)%100)/100, h*((i*61)%100)/100, 40+((i*23)%90), 0, Math.PI*2); g.fill();}
+  g.globalAlpha=1; g.fillStyle="#171229";
+  g.font="900 104px 'Anybody', sans-serif";
+  const words=r.name.split(" "); words.forEach((wd,i)=>g.fillText(wd, 36, h-140-(words.length-1-i)*100));
+  g.font="500 24px 'Martian Mono', monospace"; g.fillText("AI VIDEO", 40, h-60);
+  g.beginPath(); g.arc(w-90,90,44,0,Math.PI*2); g.fill(); g.fillStyle=r.c[0];
+  g.beginPath(); g.moveTo(w-104,68); g.lineTo(w-104,112); g.lineTo(w-68,90); g.closePath(); g.fill();
+  return cv;
+}
+
+const vids = REELS.map(r=>{
+  const v=document.createElement("video"); v.src=src(r); v.muted=true; v.loop=true; v.playsInline=true; v.preload="auto";
+  v.setAttribute("playsinline",""); r.ok=false;
+  v.addEventListener("loadeddata",()=>{ r.ok=true; r.onready&&r.onready(); },{once:true});
+  return v;
+});
+
+const player=document.getElementById("player"), pslot=document.getElementById("pslot");
+function openPlayer(i){
+  const r=REELS[i]; pslot.innerHTML=""; document.getElementById("ptitle").textContent=r.name;
+  const v=document.createElement("video"); v.src=src(r); v.controls=true; v.playsInline=true; v.autoplay=true;
+  v.addEventListener("error",()=>{ pslot.innerHTML=""; pslot.appendChild(poster(r)); });
+  pslot.appendChild(v); player.hidden=false; document.getElementById("pclose").focus();
+}
+function closePlayer(){ player.hidden=true; const v=pslot.querySelector("video"); if(v) v.pause(); pslot.innerHTML=""; }
+document.getElementById("pclose").onclick=closePlayer;
+player.addEventListener("click",e=>{ if(e.target===player) closePlayer(); });
+addEventListener("keydown",e=>{ if(e.key==="Escape" && !player.hidden) closePlayer(); });
+
+(function(){
+  const stage=document.getElementById("stage");
+  const fail=()=>stage.insertAdjacentHTML("beforeend",'<div class="nogl">The 3D reel room needs WebGL. Try another browser to see the work.</div>');
+  if(!window.THREE) return fail();
+  let renderer; try{ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true}); }catch(e){ return fail(); }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2)); stage.prepend(renderer.domElement);
+  const scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x1a1213,10,24);
+  const cam=new THREE.PerspectiveCamera(42,1,.1,100); cam.position.set(0,1.1,9.2); cam.lookAt(0,.6,0);
+  const ring=new THREE.Group(); scene.add(ring);
+  const N=REELS.length, R=4.2, W=1.62, H=W*16/9;
+  const planes=REELS.map((r,i)=>{
+    const tex=new THREE.CanvasTexture(poster(r));
+    const mat=new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide});
+    const geo=new THREE.PlaneGeometry(W,H);
+    const m=new THREE.Mesh(geo,mat); const a=i/N*Math.PI*2;
+    m.position.set(Math.sin(a)*R,H/2-.4,Math.cos(a)*R); m.rotation.y=a; m.userData={i,base:H/2-.4};
+    const ref=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:.14,side:THREE.DoubleSide}));
+    ref.scale.y=-1; ref.position.set(m.position.x,-H/2-.42,m.position.z); ref.rotation.y=a; ring.add(ref);
+    r.onready=()=>{ const vt=new THREE.VideoTexture(vids[i]); mat.map=vt; ref.material.map=vt; mat.needsUpdate=ref.material.needsUpdate=true; vids[i].play().catch(()=>{}); };
+    if(r.ok) r.onready();
+    ring.add(m); return m;
+  });
+  const floor=new THREE.Mesh(new THREE.CircleGeometry(7,64),new THREE.MeshBasicMaterial({color:0x0f0c0d,transparent:true,opacity:.45}));
+  floor.rotation.x=-Math.PI/2; floor.position.y=-.42; scene.add(floor);
+  const pg=new THREE.BufferGeometry(), P=420, pos=new Float32Array(P*3);
+  for(let i=0;i<P;i++){ pos[i*3]=(Math.random()-.5)*22; pos[i*3+1]=Math.random()*8-1; pos[i*3+2]=(Math.random()-.5)*22; }
+  pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
+  const dust=new THREE.Points(pg,new THREE.PointsMaterial({color:0xfff1dc,size:.03,transparent:true,opacity:.6})); scene.add(dust);
+
+  function size(){ const w=stage.clientWidth,h=stage.clientHeight; renderer.setSize(w,h,false); cam.aspect=w/h;
+    cam.position.z = w<560 ? 11.5 : 9.2; cam.updateProjectionMatrix(); }
+  size(); new ResizeObserver(size).observe(stage);
+
+  const base=reduced?0:.0025;
+  let rot=0, vel=base, target=null, dragging=false, lastX=0, moved=0, hover=-1;
+  const ray=new THREE.Raycaster(), mouse=new THREE.Vector2(), el=renderer.domElement;
+  function pick(e){ const b=el.getBoundingClientRect(); mouse.set(((e.clientX-b.left)/b.width)*2-1, -((e.clientY-b.top)/b.height)*2+1);
+    ray.setFromCamera(mouse,cam); const hit=ray.intersectObjects(planes)[0]; return hit?hit.object.userData.i:-1; }
+  el.addEventListener("pointerdown",e=>{ dragging=true; moved=0; lastX=e.clientX; el.classList.add("dragging"); el.setPointerCapture(e.pointerId); target=null; });
+  el.addEventListener("pointermove",e=>{ if(dragging){ const dx=e.clientX-lastX; lastX=e.clientX; moved+=Math.abs(dx); rot+=dx*.006; vel=dx*.0006; } else { hover=pick(e); el.style.cursor=hover>=0?"pointer":"grab"; } });
+  el.addEventListener("pointerup",e=>{ dragging=false; el.classList.remove("dragging"); if(moved<6){ const i=pick(e); if(i>=0) openPlayer(i); } });
+  el.addEventListener("pointerleave",()=>{ hover=-1; });
+  el.tabIndex=0; el.setAttribute("aria-label","3D reel carousel. Use left and right arrows to turn, Enter to play.");
+  const step=Math.PI*2/N;
+  function front(){ const k=Math.round(-rot/step)%N; return (k+N)%N; }
+  el.addEventListener("keydown",e=>{
+    if(e.key==="ArrowRight") target=Math.round(rot/step)*step-step;
+    if(e.key==="ArrowLeft") target=Math.round(rot/step)*step+step;
+    if(e.key==="Enter") openPlayer(front()); });
+  const nowName=document.getElementById("nowName"); let lastFront=-1;
+  function tick(t){
+    if(!dragging){ if(target!==null){ rot+=(target-rot)*.08; if(Math.abs(target-rot)<.001) target=null; } else { rot+=vel; vel+=(base-vel)*.01; } }
+    ring.rotation.y=rot;
+    planes.forEach((m,i)=>{ const lift=(i===hover?.25:0)+(reduced?0:Math.sin(t*.0012+i)*.06); m.position.y+=(m.userData.base+lift-m.position.y)*.12; });
+    dust.rotation.y = reduced?0:t*.00003;
+    const f=front(); if(f!==lastFront){ lastFront=f; nowName.textContent=REELS[f].name; }
+    renderer.render(scene,cam); requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

@@ -10,6 +10,14 @@
     {
       "source": "/tacoandchai/",
       "destination": "/tacoandchai/index.html"
+    },
+    {
+      "source": "/flick",
+      "destination": "/flick/index.html"
+    },
+    {
+      "source": "/flick/",
+      "destination": "/flick/index.html"
     }
   ]
 }

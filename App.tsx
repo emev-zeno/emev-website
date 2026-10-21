@@ -81,6 +81,11 @@ const HomePage: React.FC = () => {
             <div className="project-name">taco & chai</div>
             <div className="project-desc">Food & lifestyle content brand</div>
           </a>
+          <a href="/flick" className="project-card">
+            <div className="project-label"><span className="dot" />Live</div>
+            <div className="project-name">Flick</div>
+            <div className="project-desc">AI video ads. Spin the reel room.</div>
+          </a>
           <a href="https://toto.emev.com.au" target="_blank" rel="noreferrer" className="project-card">
             <div className="project-label"><span className="dot" />Live</div>
             <div className="project-name">toto</div>
